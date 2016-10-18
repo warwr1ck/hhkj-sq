@@ -339,5 +339,5 @@ module.exports = {
 	isIPhone: isIPhone,
 	appInfo: appInfo,
 	hosts: hosts,
-	app: app
+	callApp: app
 }
