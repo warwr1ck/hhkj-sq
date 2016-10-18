@@ -6,7 +6,7 @@ var isDebug = /pc/i.test(ua)
 var isApp = /108sq/i.test(ua)
 var isDebug = /:[\d]+$/.test(location.host)
 
-var appInfo 
+var appInfo;
 
 if (isApp) {
 	var reg = /108sq\/([^/]*)\/([^/]*)\/([^/]*)\/([^/]*)$/i
