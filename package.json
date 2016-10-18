@@ -1,0 +1,22 @@
+{
+  "name": "hhkj-sq",
+  "version": "1.0.0",
+  "description": "108sq app info",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/warwr1ck/hhkj-sq.git"
+  },
+  "keywords": [
+    "108sq"
+  ],
+  "author": "warwr1ck",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/warwr1ck/hhkj-sq/issues"
+  },
+  "homepage": "https://github.com/warwr1ck/hhkj-sq#readme"
+}
