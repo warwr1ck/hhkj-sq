@@ -21,9 +21,7 @@ if (isApp) {
 } else {
 	appInfo = null
 }
-var tab = {
-	twice: 'haha'
-}
+
 var hosts = isDebug ? {
 	"main": "http://www.108sq.org:920",
 	"app": "http://app.108sq.org:920",
