@@ -2,7 +2,7 @@ var ua = window.navigator.userAgent
 
 var isAndroid = /android/i.test(ua)
 var isIPhone = /iphone/i.test(ua)
-var isDebug = /pc/i.test(ua)
+var isPCDebug = /pc/i.test(ua)
 var isApp = /108sq/i.test(ua)
 var isDebug = /:[\d]+$/.test(location.host)
 
@@ -316,7 +316,7 @@ var app = {
 	}
 }
 
-if (isDebug) {
+if (isPCDebug) {
 	app.getToken = function() {
 		return 'DEBUG TOKEN';
 	};
@@ -339,5 +339,6 @@ module.exports = {
 	isIPhone: isIPhone,
 	appInfo: appInfo,
 	hosts: hosts,
-	callApp: app
+	isPCDebug: isPCDebug,
+	app: app
 }
