@@ -48,7 +48,10 @@ var hosts = isDebug ? {
 	"message"  : "http://message.108sq.org:809" ,
 	"businessad" :'http://businessad.108sq.org:71',
 	"enrolling": "http://enrolling.108sq.org:1505" ,
-	"m": "http://m.108sq.org:920"
+	"m": "http://m.108sq.org:920",
+	"nodomain": "http://108sq.org:920",
+	"mtalksvcv2": "http://mtalksvcv2.108sq.org:831",
+	"mtalksvc": "http://mtalksvc.108sq.org:831"
 } : {
 	"main": "http://www.108sq.com",
 	"app": "http://app.108sq.com",
@@ -75,7 +78,10 @@ var hosts = isDebug ? {
 	"message"  : "http://message.108sq.com" ,
 	"businessad" : "http://businessad.108sq.com",
 	"enrolling": "http://enrolling.108sq.com",
-	"m": "http://m.108sq.com"
+	"m": "http://m.108sq.com",
+	"nodomain": "http://108sq.com",
+	"mtalksvcv2": "http://mtalksvcv2.sq108.net",
+	"mtalksvc": "http://mtalksvc.sq108.net"
 }
 
 var app = {
@@ -313,6 +319,9 @@ var app = {
 	},
 	openImage:function(src){
 		return this._callMethod('openImage',src);
+	},
+	appWebShare: function () {
+		return this._callMethod('appWebShare');
 	}
 }
 
