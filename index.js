@@ -320,8 +320,10 @@ var app = {
 	openImage:function(src){
 		return this._callMethod('openImage',src);
 	},
-	appWebShare: function () {
-		return this._callMethod('appWebShare');
+	appWebShare: function (showOrNot) {
+		return this._callMethod('appWebShare', JSON.stringify({
+			isShow: showOrNot
+		}));
 	}
 }
 
@@ -334,6 +336,54 @@ if (isPCDebug) {
 	};
 	app.getUserName = function () {
 		return 'user_DEBUG'
+	}
+	app.ajax = function (options) {
+		var _default = {
+			url: '',
+			type: 'GET',
+			params: {},
+			waiting: '',
+			success: null,
+			complete: null,
+			error: null,
+			headers: {
+				'Access-Token': app.getToken()
+			}
+		}
+
+		for (var i in _default) {
+			options[i] = options.hasOwnProperty(i) ? options[i] : _default[i]
+		}
+		function j2p (json) {
+			var arr = []
+			for (var i in json) {
+				arr.push(i+'='+json[i])
+			}
+			return arr.join('&')
+		}
+		var xhr = new XMLHttpRequest();
+
+		xhr.onreadystatechange = function () {
+			if (xhr.readyState == 4) {
+				options.complete && options.complete()
+				if (xhr.status >= 200 && xhr.status < 400) {
+					var resp = JSON.parse(xhr.responseText)
+					options.success && options.success.call(window, resp)
+				} else {
+					options.error && options.error()
+				}
+			}
+		}
+		if (options.type === 'GET') {
+			xhr.open('GET', options.url + '?' + j2p(options.params), true)
+			xhr.setRequestHeader('Access-Token', options.headers['Access-Token'])
+			xhr.send()
+		} else if (options.type === 'POST') {
+			xhr.open('POST', options.url, true)
+			xhr.setRequestHeader('Access-Token', options.headers['Access-Token'])
+			xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
+			xhr.send(options.params)
+		}
 	}
 	
 	window.onload = function () {
