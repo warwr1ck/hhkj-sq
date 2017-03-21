@@ -1,4 +1,4 @@
-import isPCDebug from '../utils'
+import {isPCDebug} from '../utils'
 
 /**
  * app ajax方法，无跨域问题，仅在社区中有用，自带登陆信息

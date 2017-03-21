@@ -1,7 +1,7 @@
-import isApp from './utils'
+import {isApp} from './utils'
 
 var appInfo
-
+var ua = window.navigator.userAgent
 if (isApp) {
 	var reg = /108sq\/([^/]*)\/([^/]*)\/([^/]*)\/([^/]*)$/i
 	var match = ua.match(reg)

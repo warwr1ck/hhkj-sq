@@ -1,6 +1,6 @@
 import ajax from './ajax'
 import openUpload from './openUpload'
-import isPCDebug from '../utils'
+import {isPCDebug} from '../utils'
 
 var app = {
   /*
