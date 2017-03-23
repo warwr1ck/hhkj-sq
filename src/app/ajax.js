@@ -75,6 +75,9 @@ if (isPCDebug) {
       type: 'GET',
       params: {},
       waiting: '',
+      headers: {
+        'Access-Token': 'DEBUG TOKEN'
+      },
       success: null,
       complete: null,
       error: null
