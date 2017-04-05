@@ -14,7 +14,7 @@
  *   @complete {Function} 请求完成时回掉函数
  */
 
-const openUpload = function (configs) {
+var openUpload = function (configs) {
   var defaults = {
     url: '',
     waiting: '',
