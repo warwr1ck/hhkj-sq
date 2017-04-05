@@ -1,7 +1,7 @@
 {
   "name": "hhkj-sq",
   "version": "1.2.0",
-  "description": "将引用目录改为dist/index 同时利用webpack打包用babel编译",
+  "description": "108社区jsbridge提供的方法以及一些常用的方法",
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
