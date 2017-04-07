@@ -5,6 +5,13 @@
 ```ES6
 import {isAndroid, isIPhone, hosts, appInfo, app, isPCDebug} from 'hhkj-sq'
 ```
+或直接引用
+```
+  <script src="http://commoncnd.108sq.com/Scripts/hhkj-sq.min.js"></script>
+  <script>
+    console.log(hhkjSq)
+  </script>
+```
 
 ### hosts
 - 108社区域名，正式版后不跟端口号，测试版地址后跟端口号
