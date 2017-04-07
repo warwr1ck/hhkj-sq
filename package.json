@@ -1,10 +1,10 @@
 {
   "name": "hhkj-sq",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "108社区jsbridge提供的方法以及一些常用的方法",
-  "main": "dist/index.js",
+  "main": "dist/hhkj-sq.min.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "node build"
   },
   "repository": {
     "type": "git",
@@ -21,7 +21,12 @@
   "homepage": "https://github.com/warwr1ck/hhkj-sq#readme",
   "devDependencies": {
     "babel-core": "^6.24.0",
+    "babel-plugin-external-helpers": "^6.22.0",
     "babel-preset-es2015": "^6.24.0",
+    "babel-preset-es2015-rollup": "^3.0.0",
+    "rollup": "^0.41.6",
+    "rollup-plugin-babel": "^2.7.1",
+    "rollup-plugin-uglify": "^1.0.1",
     "webpack": "^2.3.3"
   }
 }

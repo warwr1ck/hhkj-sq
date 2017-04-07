@@ -1,7 +1,7 @@
 var path = require('path')
 var webpack = require('webpack')
 module.exports = {
-  entry: './index',
+  entry: './src/index',
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: 'index.js'
@@ -17,12 +17,5 @@ module.exports = {
         }
       }
     ]
-  },
-  plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      output: {
-        comments: false
-      }
-    })
-  ]
+  }
 }
