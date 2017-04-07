@@ -9,7 +9,7 @@ import {isAndroid, isIPhone, hosts, appInfo, app, isPCDebug} from 'hhkj-sq'
 ```
   <script src="http://commoncnd.108sq.com/Scripts/hhkj-sq.min.js"></script>
   <script>
-    console.log(hhkjSq)
+    console.log(HhkjSq)
   </script>
 ```
 

@@ -1,5 +1,5 @@
 /* !
-* hhkj-sq.js v1.2.1
+* hhkj-sq.js v1.2.2
 * (c) 2017 wanglk<warwr1ck@126.com>
 * Released under the MIT License.
 */
@@ -7,7 +7,7 @@
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
 	typeof define === 'function' && define.amd ? define(['exports'], factory) :
-	(factory((global.hhkjSq = global.hhkjSq || {})));
+	(factory((global.HhkjSq = global.HhkjSq || {})));
 }(this, (function (exports) { 'use strict';
 
 var ua = window.navigator.userAgent;

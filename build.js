@@ -29,7 +29,7 @@ function build(isMin) {
   }).then(bundle => {
     return write(path.resolve(__dirname, 'dist/' + filename), bundle.generate({
       format: 'umd',
-      moduleName: 'hhkjSq'
+      moduleName: 'HhkjSq'
     }).code)
   }).then(() => {
     console.log(filename + ' v' + version +' builded')
