@@ -1,5 +1,5 @@
 /* !
-* hhkj-sq.js v1.2.2
+* hhkj-sq.js v1.2.4
 * (c) 2017 wanglk<warwr1ck@126.com>
 * Released under the MIT License.
 */
@@ -85,7 +85,7 @@ var hosts = isDebug ? {
 	"login": "http://login.108sq.com",
 	"userop": "http://userop.108sq.com",
 	"discuss": "http://discuss.108sq.com",
-	"discuss1": "http:discuss.108sq.com",
+	"discuss1": "http://discuss.108sq.com",
 	"uploadimg": "http://photo.108sq.com",
 	"showimg": "http://photoshow.108sq.com",
 	"merchant": "http://sj.108sq.com",

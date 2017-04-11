@@ -1,6 +1,6 @@
 {
   "name": "hhkj-sq",
-  "version": "1.2.2",
+  "version": "1.2.4",
   "description": "108社区jsbridge提供的方法以及一些常用的方法",
   "main": "dist/hhkj-sq.min.js",
   "scripts": {
