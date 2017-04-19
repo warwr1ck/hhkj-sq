@@ -10,6 +10,7 @@ import {isPCDebug} from '../utils'
  *   @success {Function} 成功的回掉函数
  *   @error {Function} 错误的回掉函数
  *   @complete {Function} 请求完成的回掉函数
+ *   @isNeedDecode {Boolean} 请求的参数是否需要URI解码
  */
 var ajax = function (configs) {
   var defaults = {
@@ -19,7 +20,8 @@ var ajax = function (configs) {
     params: {},
     success: null,
     error: null,
-    complete: null
+    complete: null,
+    isNeedDecode: false
   },
   options = {};
   for (var i in defaults) {
@@ -61,7 +63,8 @@ var ajax = function (configs) {
     params: j2p(options.params),
     success: success,
     error: error,
-    complete: complete
+    complete: complete,
+    isNeedDecode: options.isNeedDecode
   };
   //判断是否是本地文件
   this._callMethod('ajax', JSON.stringify(params));

@@ -1,5 +1,5 @@
 /* !
-* hhkj-sq.js v1.2.4
+* hhkj-sq.js v1.2.5
 * (c) 2017 wanglk<warwr1ck@126.com>
 * Released under the MIT License.
 */
@@ -133,7 +133,8 @@ var ajax = function ajax(configs) {
     params: {},
     success: null,
     error: null,
-    complete: null
+    complete: null,
+    isNeedDecode: false
   },
       options = {};
   for (var i in defaults) {
@@ -178,7 +179,8 @@ var ajax = function ajax(configs) {
     params: j2p(options.params),
     success: success,
     error: error,
-    complete: complete
+    complete: complete,
+    isNeedDecode: options.isNeedDecode
   };
   //判断是否是本地文件
   this._callMethod('ajax', JSON.stringify(params));
