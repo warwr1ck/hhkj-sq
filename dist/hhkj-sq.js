@@ -1,5 +1,5 @@
 /* !
-* hhkj-sq.js v1.2.5
+* hhkj-sq.js v1.2.6
 * (c) 2017 wanglk<warwr1ck@126.com>
 * Released under the MIT License.
 */
@@ -22,6 +22,57 @@ var isIPhone = /iphone/i.test(ua);
 
 // 是否是PC断模拟app环境
 var isPCDebug = /pc/i.test(ua) && /108sq/i.test(ua);
+
+/*
+* jsonp请求方法（简易）
+* @options {Object} 请求参数
+*   @url {String} 请求地址
+*   @params {Object} 请求参数
+*   @success {Function} 成功回掉函数
+*   @callback {String} 成功回掉函数名字
+*/
+function jsonpRequest(options) {
+  var script = document.createElement('script');
+  if (options.callback) {
+    window[options.callback] = options.success || function () {};
+  } else {
+    var random = parseInt(Math.random() * 1000000) + 1000000;
+    options.callback = '_jsonpCallback' + random;
+    window[options.callback] = options.success || function () {};
+  }
+  script.onload = function () {
+    this.parentNode.removeChild(this);
+  };
+  script.onerror = function () {
+    this.parentNode.removeChild(this);
+  };
+  var head = document.querySelector('head');
+  head.appendChild(script);
+  script.src = options.url + '?callback=' + options.callback + '&' + j2p(options.params);
+}
+
+// json格式文件转换为字符串
+function j2p(json) {
+  var arr = [];
+  for (var i in json) {
+    json.hasOwnProperty(i) && arr.push(i + '=' + json[i]);
+  }
+  return arr.join('&');
+}
+
+function getOS() {
+  var u = navigator.userAgent;
+  if (u.indexOf('Android') > -1 || u.indexOf('Linux') > -1) {
+    //安卓手机
+    return "Android";
+  } else if (u.indexOf('iPhone') > -1) {
+    //苹果手机
+    return "iPhone OS";
+  } else if (u.indexOf('Windows Phone') > -1) {
+    return "Windows Mobile";
+  }
+  return "";
+}
 
 var appInfo;
 var ua$1 = window.navigator.userAgent;
@@ -124,6 +175,7 @@ var hosts = isDebug ? {
  *   @success {Function} 成功的回掉函数
  *   @error {Function} 错误的回掉函数
  *   @complete {Function} 请求完成的回掉函数
+ *   @isNeedDecode {Boolean} 请求的参数是否需要URI解码
  */
 var ajax = function ajax(configs) {
   var defaults = {
@@ -362,6 +414,54 @@ var openUpload = function openUpload(configs) {
   this._callMethod('openUpload', JSON.stringify(params));
 };
 
+/*
+* 统计方法
+* @configs {Object} 统计的信息
+*   @pageName {String} 页面名，必填
+*   @eventName {String} 事件名，必填
+*/
+
+var statistics = void 0;
+if (isApp) {
+  statistics = function statistics(configs) {
+    return this._callMethod('webStatistics', JSON.stringify(configs));
+  };
+} else {
+  var ma = {
+    log: function log(params) {
+      var args = filterArgs(params);
+      jsonpRequest({
+        url: 'http://analytics.108sq.com/log/',
+        params: {
+          version: ma.version,
+          os: getOS(),
+          page: params.pageName,
+          event: params.eventName,
+          args: encodeURIComponent(args)
+        },
+        callback: 'logCallback'
+      });
+    },
+    version: '1.0.0'
+  };
+  statistics = ma.log;
+}
+
+function filterArgs(params) {
+  var argsObj = {};
+  for (var i in params) {
+    if (i != 'pageName' && i != 'eventName' && params.hasOwnProperty(i)) {
+      argsObj[i] = params[i];
+    }
+  }
+  var args = Object.keys(argsObj).map(function (item) {
+    return item + '=' + argsObj[item];
+  }).join(',');
+  return args;
+}
+
+var statistics$1 = statistics;
+
 var app = {
   /*
   * app是否提供了name的方法
@@ -516,9 +616,7 @@ var app = {
   *   @pageName {String} 页面名，必填
   *   @eventName {String} 事件名，必填
   */
-  webStatistics: function webStatistics(configs) {
-    return this._callMethod('webStatistics', JSON.stringify(configs));
-  },
+  webStatistics: statistics$1,
 
   /*
   * app提供的支付方法

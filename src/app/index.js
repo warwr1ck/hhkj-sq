@@ -1,5 +1,6 @@
 import ajax from './ajax'
 import openUpload from './openUpload'
+import statistics from './statistics'
 import {isPCDebug} from '../utils'
 
 var app = {
@@ -157,9 +158,7 @@ var app = {
   *   @pageName {String} 页面名，必填
   *   @eventName {String} 事件名，必填
   */
-  webStatistics : function(configs){
-    return this._callMethod('webStatistics', JSON.stringify(configs));
-  },
+  webStatistics : statistics,
 
   /*
   * app提供的支付方法
