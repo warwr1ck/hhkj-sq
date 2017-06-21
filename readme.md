@@ -28,3 +28,14 @@ import {isAndroid, isIPhone, hosts, appInfo, app, isPCDebug} from 'hhkj-sq'
 ### isPCDebug
 - PC端通过userAngent模拟客户端的信息
 
+### toast (1.3.0添加)
+```javascript
+import {toast} from 'hhkj-sq'
+
+toast({
+  message: 'message',
+  duration: 3000
+})
+toast('hello world')
+```
+

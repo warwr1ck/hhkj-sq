@@ -1,5 +1,5 @@
 /* !
-* hhkj-sq.js v1.2.7
+* hhkj-sq.js v1.3.0
 * (c) 2017 wanglk<warwr1ck@126.com>
 * Released under the MIT License.
 */
@@ -299,6 +299,40 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 } : function (obj) {
   return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
 };
+
+
+
+
+
+
+
+
+
+
+
+var classCallCheck = function (instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+};
+
+var createClass = function () {
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ("value" in descriptor) descriptor.writable = true;
+      Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }
+
+  return function (Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) defineProperties(Constructor, staticProps);
+    return Constructor;
+  };
+}();
 
 /**
  * 客户端提供的上传图片的方法
@@ -689,12 +723,82 @@ if (isPCDebug) {
   });
 }
 
+/**
+ * toast 提示
+ * @options {Object, Number, String}
+ *   @messgae {String, Number} toast信息
+ *   @duration {Number} toast 时长
+ */
+function toast(options) {
+  if (typeof options === 'string' || typeof options === 'number') {
+    options = {
+      message: options
+    };
+  }
+  new Toast(options);
+}
+
+var Toast = function () {
+  function Toast(options) {
+    classCallCheck(this, Toast);
+
+    this.options = Object.assign({}, {
+      message: '',
+      duration: 2000
+    }, options);
+    this.init();
+    this.createStyle();
+  }
+
+  createClass(Toast, [{
+    key: 'init',
+    value: function init() {
+      var _this = this;
+
+      this.dom = getInstance(this.options.message);
+      document.body.appendChild(this.dom);
+      setTimeout(function () {
+        _this.dom.addEventListener('transitionend', _this.destroy.bind(_this));
+        _this.dom.className += ' hide';
+      }, this.options.duration);
+    }
+  }, {
+    key: 'destroy',
+    value: function destroy() {
+      document.body.removeChild(this.dom);
+      this.dom.removeEventListener('trasnitioned', this.destroy);
+    }
+  }, {
+    key: 'createStyle',
+    value: function createStyle() {
+      var style = document.getElementById('_sq_toast_style');
+      if (style) return;
+      style = document.createElement('style');
+      style.id = '_sq_toast_style';
+      style.innerHTML = ['._sq_toast-wrapper{', 'position:fixed;', 'left: 0;', 'bottom: 15%;', 'width:100%;', 'box-sizing: border-box;', 'text-align:center;', '-webkit-transform: translateY(-50%);', 'transform: translateY(-50%);', '-webkit-transition: opacity .5s;', 'transition: opacity .5s;', 'z-index: 999;', '}', '._sq_toast-wrapper.hide{', 'opacity: 0;', '}', '._sq_toast--main{', 'display: inline-block;', 'background: rgba(0,0,0,.4);', 'color: #fff;', 'font-size: 14px;', 'padding: 4px 10px;', 'border-radius: 99px;', 'word-break: break-all;', 'box-sizing: border-box;', 'max-width: 60%;', 'text-align: center;', '}'].join('');
+      document.head.appendChild(style);
+    }
+  }]);
+  return Toast;
+}();
+
+function getInstance(message) {
+  var instance = document.createElement('div');
+  instance.className = '_sq_toast-wrapper';
+  var toast = document.createElement('div');
+  toast.className = '_sq_toast--main';
+  toast.innerText = message;
+  instance.appendChild(toast);
+  return instance;
+}
+
 exports.isAndroid = isAndroid;
 exports.isIPhone = isIPhone;
 exports.isPCDebug = isPCDebug;
 exports.appInfo = appInfo$1;
 exports.hosts = hosts;
 exports.app = app;
+exports.toast = toast;
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
