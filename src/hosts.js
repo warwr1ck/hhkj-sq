@@ -37,7 +37,8 @@ var hosts = isDebug ? {
 	"mtalksvc": "http://mtalksvc.108sq.org:831",
 	"common": "http://common.108sq.org:1505",
 	"usertxcdn": "http://usertxcdn.108sq.org:920",
-	"vote": "http://vote.108sq.org:1505"
+	"vote": "http://vote.108sq.org:1505",
+	"images": "http://images.108sq.org:920"
 } : {
 	"main": "http://www.108sq.com",
 	"app": "http://app.108sq.com",
@@ -71,7 +72,8 @@ var hosts = isDebug ? {
 	"mtalksvc": "http://mtalksvc.sq108.net",
 	"common": "http://common.108sq.com",
 	"usertxcdn": "http://usertxcdn.108sq.com",
-	"vote": "http://vote.108sq.com"
+	"vote": "http://vote.108sq.com",
+	"images": "http://images.108sq.com"
 }
 
 export default hosts

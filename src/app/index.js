@@ -205,9 +205,24 @@ var app = {
   *   @describe {String} 分享页面描述，默认为网页描述
   *   @shareImg {String} 分享图片的地址
   *   @link {String} 分享页面的地址
+  *   @immediate {Boolean} 显示app分享组件 app版本3.14.0增加此参数
   */
   appWebShare: function (configs) {
     return this._callMethod('appWebShare', JSON.stringify(configs))
+  },
+
+  /*
+ * 查看图片详情，app 3.14.0增加此方法
+ * @config {Object}
+ *   @images {Array} 图片url数组，不带域名的情况下客户端会默认加上photoshow的域名
+ *   @index {Number} 当前需要展示的图片所在的images的index
+ */
+  openImagesWithIndex: function (config) {
+    var _defalut = {
+      index: config.index || 0,
+      images: config.images ? config.images.join(',') : ''
+    }
+    return this._callMethod('openImagesWithIndex', JSON.stringify(_defalut))
   }
 }
 

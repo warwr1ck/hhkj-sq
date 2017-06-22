@@ -1,5 +1,5 @@
 /* !
-* hhkj-sq.js v1.3.0
+* hhkj-sq.js v1.3.1
 * (c) 2017 wanglk<warwr1ck@126.com>
 * Released under the MIT License.
 */
@@ -130,7 +130,8 @@ var hosts = isDebug ? {
 	"mtalksvc": "http://mtalksvc.108sq.org:831",
 	"common": "http://common.108sq.org:1505",
 	"usertxcdn": "http://usertxcdn.108sq.org:920",
-	"vote": "http://vote.108sq.org:1505"
+	"vote": "http://vote.108sq.org:1505",
+	"images": "http://images.108sq.org:920"
 } : {
 	"main": "http://www.108sq.com",
 	"app": "http://app.108sq.com",
@@ -164,7 +165,8 @@ var hosts = isDebug ? {
 	"mtalksvc": "http://mtalksvc.sq108.net",
 	"common": "http://common.108sq.com",
 	"usertxcdn": "http://usertxcdn.108sq.com",
-	"vote": "http://vote.108sq.com"
+	"vote": "http://vote.108sq.com",
+	"images": "http://images.108sq.com"
 };
 
 /**
@@ -699,9 +701,24 @@ var app = {
   *   @describe {String} 分享页面描述，默认为网页描述
   *   @shareImg {String} 分享图片的地址
   *   @link {String} 分享页面的地址
+  *   @immediate {Boolean} 显示app分享组件 app版本3.14.0增加此参数
   */
   appWebShare: function appWebShare(configs) {
     return this._callMethod('appWebShare', JSON.stringify(configs));
+  },
+
+  /*
+  * 查看图片详情，app 3.14.0增加此方法
+  * @config {Object}
+  *   @images {Array} 图片url数组，不带域名的情况下客户端会默认加上photoshow的域名
+  *   @index {Number} 当前需要展示的图片所在的images的index
+  */
+  openImagesWithIndex: function openImagesWithIndex(config) {
+    var _defalut = {
+      index: config.index || 0,
+      images: config.images ? config.images.join(',') : ''
+    };
+    return this._callMethod('openImagesWithIndex', JSON.stringify(_defalut));
   }
 };
 
